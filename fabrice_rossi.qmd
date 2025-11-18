@@ -175,3 +175,37 @@ y <- c("A", "B", "C")
 y
 y[c(TRUE, FALSE, TRUE)]
 ```
+
+## Lists
+
+Vectors must be type uniform, which will trigger a conversion to character in
+many cases. 
+
+```{r}
+broken <- c(1L, 1.5, "toto", FALSE)
+broken
+typeof(broken)
+```
+
+Lists do not have this limitation.
+
+### Creating a list
+
+```{r}
+bar <- list(1L, 1.5, "toto", FALSE)
+bar
+```
+
+```{r}
+typeof(bar)
+length(bar)
+```
+
+A list can be understood as a vector of "vectors". 
+
+```{r}
+foo <- list(c(1, 2, 3), TRUE, length)
+foo
+length(foo)
+```
+
