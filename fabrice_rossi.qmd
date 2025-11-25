@@ -530,3 +530,34 @@ calculations.
 lapply(my_data, mean, na.rm = TRUE)
 ```
 
+### Anonymous functions a.k.a. lambdas
+
+Compact function declaration (can be used directly as parameters). 
+
+```{r}
+\(x) x^2
+```
+
+```{r}
+log(1:10, base = 10)
+```
+
+A complicated way of doing something simple:
+
+```{r}
+sapply(1:10, \(x,y) 1+y*log(x), y=2)
+```
+
+```{r}
+1+2*log(1:10)
+```
+
+
+```{r}
+my_data <- list(x = 1:10,
+                y = c(NA, 2:5, NA, 6:20))
+lapply(my_data, mean, na.rm=TRUE)
+lapply(my_data, \(x) mean(x, na.rm=TRUE))
+lapply(my_data, \(x) 1+2*log(x))
+```
+
