@@ -272,3 +272,10 @@ y[4] <- "toto"
 y
 ```
 
+```{r}
+class(x)
+class(x[1])
+```
+
+The indexing operation `[]` does not change the type or the class of the 
+corresponding object. 
