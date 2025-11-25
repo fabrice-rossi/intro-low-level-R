@@ -561,3 +561,42 @@ lapply(my_data, \(x) mean(x, na.rm=TRUE))
 lapply(my_data, \(x) 1+2*log(x))
 ```
 
+### Closure
+
+```{r}
+power_function <- function(y) {
+  \(x) x^y ## closure: a function + some values
+}
+to_the_cube <- power_function(3)
+to_the_cube(1:10)
+to_the_cube
+\(x, y) x^y
+power_function(4)(4)
+to_the_cube(2)
+```
+
+```{r}
+x_to_y <- function(x, y) {
+  x^y
+}
+f <- \(x) x_to_y(x, 2)
+f(5)
+f
+```
+
+```{r}
+z <- 3
+g <- \(x) x_to_y(x, z)
+g(3)
+z <- 4
+g(3)
+g
+z <- NULL
+g(5)
+```
+```{r}
+#| eval: false
+rm(z)
+g(6) ## does not work any more as z does not exist any more
+```
+
