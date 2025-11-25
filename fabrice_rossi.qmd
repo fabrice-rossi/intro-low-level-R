@@ -312,3 +312,31 @@ y[[c(2, 1)]]
 y[[c(2, 2, 1, 2)]]
 y[[2]][[2]][[1]][2]
 ```
+### Names
+```{r}
+z <- list(keys = c("A", "B", "C"), values = c(10, 11, 12), key =c(TRUE, FALSE))
+z
+z[[1]]
+z$keys ## a named access with the dollar operator is similar to the double bracket
+z$val ## funny but dangerous name completion
+z$key
+z$ke
+z[["keys"]]
+z[["val"]] ## exact matching only
+z["values"]
+z["values"] |> class()
+z[["values"]] |> class()
+```
+
+Remark: a data frame is a list in which each element (each column) has the same
+length. 
+
+```{r}
+names(z)
+```
+
+```{r}
+names(z) <- c("A", "B", "C")
+z
+```
+
