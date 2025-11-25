@@ -218,6 +218,51 @@ u + v
 u * v
 ```
 
+### if else
+We want to compute the Shannon's entropy of a distribution: 
+$$
+H(p)=-\sum_{k=1}^Kp_k\log p_k,
+$$
+where $p_k$ is the probability of observing $k$. A possible naive definition is
+the following one (see functions below):
+
+```{r}
+H <- function(p) {
+  -sum(p*log(p))
+}
+```
+
+```{r}
+rep(1, 10) ## replicate 1 10 times
+rep(1, 10)/10 ## uniform probability distribution over 1 to 10
+H(rep(1, 10)/10)
+```
+
+```{r}
+my_dist <- c(0, 0.5, 0.5) ## distribution over 1, 2 and 3
+H(my_dist)
+0*log(0) ## undefined
+```
+
+The natural convention in entropy calculation is that $p_k\log(p_k)=0$ when 
+$p_k=0$. We can use `ifelse` to implement that.
+
+```{r}
+working_H <- function(p) {
+  p_logp <- ifelse(p>0, p*log(p), 0) ## for elements of p that > 0, we use the 
+  ## formula (second parameter of ifelse) and we use 0 for the others (third
+  ## parameter)
+  -sum(p_logp)
+}
+```
+
+```{r}
+working_H(my_dist)
+working_H(rep(1, 3)/3)
+working_H(c(1, 0, 0))
+```
+
+
 ## Lists
 
 Vectors must be type uniform, which will trigger a conversion to character in
