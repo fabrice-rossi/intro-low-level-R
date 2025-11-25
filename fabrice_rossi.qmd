@@ -432,3 +432,34 @@ my_second_fun(1, 2)
 z 
 ```
 
+### Default parameters and call by name
+
+To specify a default value for a parameter, we add a equal sign `=` after
+the formal parameter name followed by the default value. 
+
+```{r}
+x_to_y <- function(x, y=2) {
+  x^y
+}
+```
+
+```{r}
+x_to_y(2, 3)
+x_to_y(10)
+```
+
+Standard calls use positional effective parameters: all effective parameters are 
+specified in the order of the formal parameters. 
+
+This can be combined with named effective parameters: the name of the format
+parameter is used in the call, followed by an equal sign and the chosen value. 
+In this case, order does not matter any more. 
+
+```{r}
+x_to_y(y = 4, x = 2) ## 2^4
+```
+
+Positions and names can be combined if all names are after the unnamed 
+parameters. 
+
+
