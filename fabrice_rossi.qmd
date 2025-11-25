@@ -176,6 +176,48 @@ y
 y[c(TRUE, FALSE, TRUE)]
 ```
 
+### Vector "interpolation" (broadcasting)
+
+Why is that working?
+
+```{r}
+x <- c(1, 2, 3)
+x + 1
+```
+
+Most operations in R are vectorized: the same operation is applied by default
+to all the elements of a vector. To ease that, vectors can be expanded to match
+a certain length, simply by copying the values of the vector a certain number 
+of times. For instance `1` can be interpreted as `c(1, 1, 1)` if this is
+needed for a combination with a length 3 vector (as above). 
+
+```{r}
+x >= 2
+```
+
+```{r}
+set.seed(42) ## ensure reproducibility by starting the random number generator in 
+## state 42 (any integer works)
+x <- runif(20, min = -1, max = 1) ## uniform distribution
+sum(x > 0)
+sum(x > mean(x))
+x[x <= mean(x)]
+length(x[ x > mean(x)])
+```
+
+```{r}
+u <- c(1, 2, 3)
+v <- c(4, 5) ## if we duplicate v, we are left with an unused value
+u + v
+```
+
+```{r}
+u <- c(1, 2, 3, 4)
+v <- c(-1, 1) ## here we just need to duplicate v
+u + v
+u * v
+```
+
 ## Lists
 
 Vectors must be type uniform, which will trigger a conversion to character in
