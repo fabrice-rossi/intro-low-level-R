@@ -340,3 +340,95 @@ names(z) <- c("A", "B", "C")
 z
 ```
 
+## Functions
+
+R extensions (packages) consist essentially in collections of functions. 
+
+A function is an object that can be called by adding parentheses after the 
+function name, and possibly parameters inside the parentheses (effective
+parameters).
+
+```{r}
+names
+```
+
+```{r}
+log
+```
+
+In R functions can have multiple formal parameters and some of them may have
+default values. When a function is called, one has to specify in general at least
+values for the parameters without a default value.
+
+```{r}
+log(10) ## base takes the default value (e)
+log(10, 10) ## now base=10
+```
+
+```{r}
+seq.int
+```
+```{r}
+seq.int(1, 10) ## by is set to 1
+seq.int(10, 1) ## by is set to -1
+```
+
+### Creating functions
+
+This is done with the `function` key word.
+
+```{r}
+my_fun <- function(x, y) { ## between parentheses, we specify the formal parameters
+  ## between the curly braces {} we describe the operations implemented by 
+  ## the function
+  2*abs(x-y)/(abs(x)+abs(y)+1e-15)
+}
+```
+
+```{r}
+my_fun
+functionBody(my_fun)
+```
+
+```{r}
+#| eval: false
+my_fun() ## cannot work: x and y are missing
+```
+
+```{r}
+my_fun(2, 1)
+my_fun(2, 2)
+my_fun(0, 0)
+```
+
+Function execution is essentially running the code inside the body of the function
+after replacing the formal parameters by the values used as effective parameters
+at the call point. The value of the call is the last value computed in the 
+function.
+
+```{r}
+my_fun(4, 1) # x takes the value 4, and y takes the value 1
+```
+
+```{r}
+my_second_fun <- function(x, y) {
+  z <- x + y 
+  z/y
+  z/x
+}
+```
+
+```{r}
+my_second_fun(1, 2)
+```
+
+A variable defined in a function is private to the function. It does not care
+about existing variables with the same name and it disappears just before the
+end of the function execution. 
+
+```{r}
+z <- 10
+my_second_fun(1, 2)
+z 
+```
+
