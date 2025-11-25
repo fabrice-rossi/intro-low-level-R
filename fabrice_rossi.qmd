@@ -279,3 +279,36 @@ class(x[1])
 
 The indexing operation `[]` does not change the type or the class of the 
 corresponding object. 
+
+### Double brackets
+
+```{r}
+x <- list(c(1,2,3), c(TRUE, FALSE), LETTERS[10:15])
+x[1] ## single
+x[[1]] ## double
+```
+```{r}
+x[2] <- c("toto", "bar")
+x
+```
+
+```{r}
+x <- list(c(1,2,3), c(TRUE, FALSE), LETTERS[10:15])
+x[[2]] <- c("toto", "bar")
+x[[4]] <- 1:15 ## sequence of integers from 1 to 15
+x
+```
+
+```{r}
+x[[c(1, 2)]]
+x[[c(3, 2)]]
+```
+
+```{r}
+y <- list(1:4, list(letters[1:5], list(c("foo", "bar"))))
+y
+y[[2]]
+y[[c(2, 1)]]
+y[[c(2, 2, 1, 2)]]
+y[[2]][[2]][[1]][2]
+```
